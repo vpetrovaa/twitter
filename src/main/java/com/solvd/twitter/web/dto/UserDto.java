@@ -19,7 +19,7 @@ public class UserDto {
     private String email;
 
     @NotNull(message = "Password is required")
-    @Size(min = 7, max = 45, message = "Password must be more than 7 and less than 45 " +
+    @Size(min = 7, max = 70, message = "Password must be more than 7 and less than 45 " +
             "characters")
     private String password;
 
