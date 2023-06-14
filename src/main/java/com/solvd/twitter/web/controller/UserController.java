@@ -3,8 +3,6 @@ package com.solvd.twitter.web.controller;
 import com.solvd.twitter.domain.user.User;
 import com.solvd.twitter.service.UserService;
 import com.solvd.twitter.web.dto.UserDto;
-import com.solvd.twitter.web.dto.validation.OnCreate;
-import com.solvd.twitter.web.dto.validation.OnUpdate;
 import com.solvd.twitter.web.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -29,15 +27,13 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    @Validated(OnCreate.class)
-    public final UserDto create(@RequestBody final UserDto userDto) {
+    public final UserDto create(@RequestBody @Validated final UserDto userDto) {
         User user = userMapper.toEntity(userDto);
         user = userService.create(user);
         return userMapper.toDto(user);
     }
 
     @PostMapping("/{id}/following")
-    @Validated(OnCreate.class)
     public final UserDto createFollowingById(@PathVariable final String id,
                                       @RequestParam final String followingId) {
         User user = userService.createFollowingById(id, followingId);
@@ -63,8 +59,7 @@ public class UserController {
     }
 
     @PutMapping
-    @Validated(OnUpdate.class)
-    public final UserDto update(@RequestBody final UserDto userDto) {
+    public final UserDto update(@RequestBody @Validated final UserDto userDto) {
         User user = userMapper.toEntity(userDto);
         user = userService.update(user);
         return userMapper.toDto(user);
