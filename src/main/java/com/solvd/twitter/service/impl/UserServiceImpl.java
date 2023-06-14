@@ -29,13 +29,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createFollowerById(final String id, final String followerId) {
-        User follower = findById(followerId);
-        userRepository.createFollowerById(id, followerId);
-        return follower;
-    }
-
-    @Override
     public User createFollowingById(final String id, final String followingId) {
         User following = findById(followingId);
         userRepository.createFollowingById(id, followingId);

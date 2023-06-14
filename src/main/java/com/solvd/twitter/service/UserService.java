@@ -8,8 +8,6 @@ public interface UserService {
 
     User create(User user);
 
-    User createFollowerById(String id, String followerId);
-
     User createFollowingById(String id, String followingId);
 
     User findById(String id);

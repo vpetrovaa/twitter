@@ -11,10 +11,6 @@ public interface UserRepository extends Neo4jRepository<User, String> {
 
     boolean existsByEmail(String email);
 
-    @Query(value = "MATCH (u:User), (f:User) WHERE u.id=$id  AND f.id=$followerId " +
-            "CREATE (u)<-[r:FOLLOW]-(f) return f")
-    User createFollowerById(@Param("id") String id, @Param("followerId") String followerId);
-
     @Query(value = "MATCH (u:User), (f:User) WHERE u.id=$id  AND f.id=$followingId " +
             "CREATE (u)-[r:FOLLOW]->(f) return f")
     User createFollowingById(@Param("id") String id, @Param("followingId") String followingId);

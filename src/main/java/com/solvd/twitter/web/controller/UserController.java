@@ -36,14 +36,6 @@ public class UserController {
         return userMapper.toDto(user);
     }
 
-    @PostMapping("/{id}/followers")
-    @Validated(OnCreate.class)
-    public final UserDto createFollowerById(@PathVariable final String id,
-                                      @RequestParam final String followerId) {
-        User user = userService.createFollowerById(id, followerId);
-        return userMapper.toDto(user);
-    }
-
     @PostMapping("/{id}/following")
     @Validated(OnCreate.class)
     public final UserDto createFollowingById(@PathVariable final String id,
