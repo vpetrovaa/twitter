@@ -21,7 +21,7 @@ public class UserDto {
     @Email(message = "Email is not valid", groups = {OnCreate.class, OnUpdate.class})
     private String email;
 
-    @NotNull(message = "Password is required", groups = {OnCreate.class, OnUpdate.class})
+    @NotNull(message = "Password is required", groups = {OnUpdate.class})
     @Size(min = 7, max = 45, message = "Password must be more than 7 and less than 45 " +
             "characters", groups = {OnCreate.class, OnUpdate.class})
     private String password;

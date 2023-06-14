@@ -25,4 +25,8 @@ public interface UserRepository extends Neo4jRepository<User, String> {
             "CREATE (u)-[r:FOLLOW]->(f) return f")
     User createFollowingById(@Param("id") String id, @Param("followingId") String followingId);
 
+    @Query("MATCH (u:User {id: :#{#user.id}}) SET u.name = :#{#user.name}, " +
+            "u.surname = :#{#user.surname}, u.dateOfBirth = :#{#user.dateOfBirth} RETURN u")
+    User update(@Param("user") User user);
+
 }
