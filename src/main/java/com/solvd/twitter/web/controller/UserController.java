@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping("/{id}/following")
     @Validated(OnCreate.class)
     public final UserDto createFollowingById(@PathVariable final String id,
-                                      @RequestBody final String followingId) {
+                                      @RequestParam final String followingId) {
         User user = userService.createFollowingById(id, followingId);
         return userMapper.toDto(user);
     }

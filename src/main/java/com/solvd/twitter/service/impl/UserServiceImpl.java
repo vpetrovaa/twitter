@@ -30,9 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createFollowingById(final String id, final String followingId) {
-        User following = findById(followingId);
         userRepository.createFollowingById(id, followingId);
-        return following;
+        return findById(followingId);
     }
 
     @Override
