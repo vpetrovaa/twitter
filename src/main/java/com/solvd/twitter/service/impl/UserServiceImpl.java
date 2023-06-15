@@ -29,6 +29,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer getFollowersNumber(String id) {
+        return userRepository.getFollowersNumber(id);
+    }
+
+    @Override
+    public Integer getFollowingsNumber(String id) {
+        return userRepository.getFollowingsNumber(id);
+    }
+
+    @Override
     public User create(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new ResourceAlreadyExistsException("User with email " +

@@ -9,15 +9,21 @@ import java.util.List;
 
 public interface UserRepository extends Neo4jRepository<User, String> {
 
-    boolean existsByEmail(String email);
+    Boolean existsByEmail(String email);
 
-    @Query("MATCH  (u:User {id: $id}), (f:User {id: $followerId}) " +
+    @Query("MATCH (u:User {id: $id}), (f:User {id: $followerId}) " +
             "RETURN EXISTS((u)<-[:FOLLOW]-(f))")
-    boolean isAFollower(@Param("id") String id, @Param("followerId") String followerId);
+    Boolean isAFollower(@Param("id") String id, @Param("followerId") String followerId);
 
-    @Query("MATCH  (u:User {id: $id}), (f:User {id: $followingId}) " +
+    @Query("MATCH (u:User {id: $id}), (f:User {id: $followingId}) " +
             "RETURN EXISTS((u)-[:FOLLOW]->(f))")
-    boolean isAFollowing(@Param("id") String id, @Param("followingId") String followingId);
+    Boolean isAFollowing(@Param("id") String id, @Param("followingId") String followingId);
+
+    @Query("MATCH (u:User {id: $id})<-[r:FOLLOW]-() RETURN COUNT(r)")
+    Integer getFollowersNumber(String id);
+
+    @Query("MATCH (u:User {id: $id})-[r:FOLLOW]->() RETURN COUNT(r)")
+    Integer getFollowingsNumber(String id);
 
     @Query(value = "MATCH (u:User), (f:User) WHERE u.id=$id AND f.id=$followingId " +
             "MERGE (u)-[r:FOLLOW]->(f) return f")

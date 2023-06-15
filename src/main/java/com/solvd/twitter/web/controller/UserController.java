@@ -38,6 +38,16 @@ public class UserController {
         return userService.isAFollowing(id, followingId);
     }
 
+    @GetMapping("/{id}/followers/count")
+    public Integer countFollowers(@PathVariable final String id) {
+        return userService.getFollowersNumber(id);
+    }
+
+    @GetMapping("/{id}/followings/count")
+    public Integer countFollowings(@PathVariable final String id) {
+        return userService.getFollowingsNumber(id);
+    }
+
     @PostMapping
     public final UserDto create(@RequestBody @Validated final UserDto userDto) {
         User user = userMapper.toEntity(userDto);

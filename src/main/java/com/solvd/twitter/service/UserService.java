@@ -10,6 +10,10 @@ public interface UserService {
 
     Boolean isAFollowing(String id, String followingId);
 
+    Integer getFollowersNumber(String id);
+
+    Integer getFollowingsNumber(String id);
+
     User create(User user);
 
     User createFollowingById(String id, String followingId);
