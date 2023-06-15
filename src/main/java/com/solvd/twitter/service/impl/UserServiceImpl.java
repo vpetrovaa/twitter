@@ -19,22 +19,22 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public Boolean isAFollower(String id, String followerId) {
+    public Boolean isAFollower(final String id, final String followerId) {
         return userRepository.isAFollower(id, followerId);
     }
 
     @Override
-    public Boolean isAFollowing(String id, String followingId) {
+    public Boolean isAFollowing(final String id, final String followingId) {
         return userRepository.isAFollowing(id, followingId);
     }
 
     @Override
-    public Integer getFollowersNumber(String id) {
+    public Integer getFollowersNumber(final String id) {
         return userRepository.getFollowersNumber(id);
     }
 
     @Override
-    public Integer getFollowingsNumber(String id) {
+    public Integer getFollowingsNumber(final String id) {
         return userRepository.getFollowingsNumber(id);
     }
 
@@ -82,12 +82,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteFollowingById(String id, String followingId) {
+    public void deleteFollowingById(final String id, final String followingId) {
         userRepository.deleteFollowingById(id, followingId);
     }
 
     @Override
-    public void deleteFollowerById(String id, String followerId) {
+    public void deleteFollowerById(final String id, final String followerId) {
         userRepository.deleteFollowerById(id, followerId);
     }
 

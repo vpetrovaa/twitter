@@ -27,24 +27,24 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping("/{id}/followers/is")
-    public Boolean isAFollower(@PathVariable final String id,
+    public final Boolean isAFollower(@PathVariable final String id,
                                    @RequestParam final String followerId) {
         return userService.isAFollower(id, followerId);
     }
 
     @GetMapping("/{id}/followings/is")
-    public Boolean isAFollowing(@PathVariable final String id,
+    public final Boolean isAFollowing(@PathVariable final String id,
                               @RequestParam final String followingId) {
         return userService.isAFollowing(id, followingId);
     }
 
     @GetMapping("/{id}/followers/count")
-    public Integer countFollowers(@PathVariable final String id) {
+    public final Integer countFollowers(@PathVariable final String id) {
         return userService.getFollowersNumber(id);
     }
 
     @GetMapping("/{id}/followings/count")
-    public Integer countFollowings(@PathVariable final String id) {
+    public final Integer countFollowings(@PathVariable final String id) {
         return userService.getFollowingsNumber(id);
     }
 
