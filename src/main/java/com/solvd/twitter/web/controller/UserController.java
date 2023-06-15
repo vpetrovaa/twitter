@@ -26,6 +26,18 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
+    @GetMapping("/{id}/followers/is")
+    public Boolean isAFollower(@PathVariable final String id,
+                                   @RequestParam final String followerId) {
+        return userService.isAFollower(id, followerId);
+    }
+
+    @GetMapping("/{id}/followings/is")
+    public Boolean isAFollowing(@PathVariable final String id,
+                              @RequestParam final String followingId) {
+        return userService.isAFollowing(id, followingId);
+    }
+
     @PostMapping
     public final UserDto create(@RequestBody @Validated final UserDto userDto) {
         User user = userMapper.toEntity(userDto);

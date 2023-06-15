@@ -19,6 +19,16 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
+    public Boolean isAFollower(String id, String followerId) {
+        return userRepository.isAFollower(id, followerId);
+    }
+
+    @Override
+    public Boolean isAFollowing(String id, String followingId) {
+        return userRepository.isAFollowing(id, followingId);
+    }
+
+    @Override
     public User create(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new ResourceAlreadyExistsException("User with email " +

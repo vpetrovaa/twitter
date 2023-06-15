@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface UserService {
 
+    Boolean isAFollower(String id, String followerId);
+
+    Boolean isAFollowing(String id, String followingId);
+
     User create(User user);
 
     User createFollowingById(String id, String followingId);
