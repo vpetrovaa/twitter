@@ -3,3 +3,11 @@ server:
 spring:
   config:
     import: optional:file:.env[.properties]
+  neo4j:
+    uri: neo4j://${NEO4J_HOST}:7687
+    authentication:
+      username: ${NEO4J_USERNAME}
+      password: ${NEO4J_PASSWORD}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
