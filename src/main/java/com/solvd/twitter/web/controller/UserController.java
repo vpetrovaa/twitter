@@ -1,6 +1,8 @@
 package com.solvd.twitter.web.controller;
 
 import com.solvd.twitter.domain.user.User;
+import com.solvd.twitter.service.FollowerService;
+import com.solvd.twitter.service.FollowingService;
 import com.solvd.twitter.service.UserService;
 import com.solvd.twitter.web.dto.UserDto;
 import com.solvd.twitter.web.mapper.UserMapper;
@@ -24,28 +26,30 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final FollowerService followerService;
+    private final FollowingService followingService;
     private final UserMapper userMapper;
 
     @GetMapping("/{id}/followers/is")
     public final Boolean isAFollower(@PathVariable final String id,
                                    @RequestParam final String followerId) {
-        return userService.isAFollower(id, followerId);
+        return followerService.isAFollower(id, followerId);
     }
 
     @GetMapping("/{id}/followings/is")
     public final Boolean isAFollowing(@PathVariable final String id,
                               @RequestParam final String followingId) {
-        return userService.isAFollowing(id, followingId);
+        return followingService.isAFollowing(id, followingId);
     }
 
     @GetMapping("/{id}/followers/count")
     public final Integer countFollowers(@PathVariable final String id) {
-        return userService.getFollowersNumber(id);
+        return followerService.getFollowersNumber(id);
     }
 
     @GetMapping("/{id}/followings/count")
     public final Integer countFollowings(@PathVariable final String id) {
-        return userService.getFollowingsNumber(id);
+        return followingService.getFollowingsNumber(id);
     }
 
     @PostMapping
@@ -58,7 +62,7 @@ public class UserController {
     @PostMapping("/{id}/followings")
     public final UserDto createFollowingById(@PathVariable final String id,
                                       @RequestParam final String followingId) {
-        User user = userService.createFollowingById(id, followingId);
+        User user = followingService.createFollowingById(id, followingId);
         return userMapper.toDto(user);
     }
 
@@ -70,13 +74,13 @@ public class UserController {
 
     @GetMapping("/{id}/followers")
     public final List<UserDto> getFollowersByUserId(@PathVariable final String id) {
-        List<User> users = userService.findFollowersByUserId(id);
+        List<User> users = followerService.findFollowersByUserId(id);
         return userMapper.toDto(users);
     }
 
     @GetMapping("/{id}/followings")
     public final List<UserDto> getFollowingsByUserId(@PathVariable final String id) {
-        List<User> users = userService.findFollowingsByUserId(id);
+        List<User> users = followingService.findFollowingsByUserId(id);
         return userMapper.toDto(users);
     }
 
@@ -95,13 +99,13 @@ public class UserController {
     @DeleteMapping("/{id}/followings")
     public void deleteFollowingById(@PathVariable final String id,
                                     @RequestParam final String followingId) {
-        userService.deleteFollowingById(id, followingId);
+        followingService.deleteFollowingById(id, followingId);
     }
 
     @DeleteMapping("/{id}/followers")
     public void deleteFollowerById(@PathVariable final String id,
                                    @RequestParam final String followerId) {
-        userService.deleteFollowerById(id, followerId);
+        followerService.deleteFollowerById(id, followerId);
     }
 
 }
