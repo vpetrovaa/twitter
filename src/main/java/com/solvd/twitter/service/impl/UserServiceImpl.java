@@ -61,4 +61,14 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public void deleteFollowingById(String id, String followingId) {
+        userRepository.deleteFollowingById(id, followingId);
+    }
+
+    @Override
+    public void deleteFollowerById(String id, String followerId) {
+        userRepository.deleteFollowerById(id, followerId);
+    }
+
 }

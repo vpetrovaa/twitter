@@ -33,7 +33,7 @@ public class UserController {
         return userMapper.toDto(user);
     }
 
-    @PostMapping("/{id}/following")
+    @PostMapping("/{id}/followings")
     public final UserDto createFollowingById(@PathVariable final String id,
                                       @RequestParam final String followingId) {
         User user = userService.createFollowingById(id, followingId);
@@ -68,6 +68,18 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable final String id) {
         userService.deleteById(id);
+    }
+
+    @DeleteMapping("/{id}/followings")
+    public void deleteFollowingById(@PathVariable final String id,
+                                    @RequestParam final String followingId) {
+        userService.deleteFollowingById(id, followingId);
+    }
+
+    @DeleteMapping("/{id}/followers")
+    public void deleteFollowerById(@PathVariable final String id,
+                                   @RequestParam final String followerId) {
+        userService.deleteFollowerById(id, followerId);
     }
 
 }

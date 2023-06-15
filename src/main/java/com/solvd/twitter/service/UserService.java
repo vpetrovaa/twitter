@@ -20,4 +20,8 @@ public interface UserService {
 
     void deleteById(String id);
 
+    void deleteFollowingById(String id, String followingId);
+
+    void deleteFollowerById(String id, String followerId);
+
 }
