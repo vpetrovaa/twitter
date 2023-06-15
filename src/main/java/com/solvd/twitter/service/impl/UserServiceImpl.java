@@ -10,7 +10,6 @@ import com.solvd.twitter.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,25 +21,21 @@ public class UserServiceImpl implements UserService, FollowerService, FollowingS
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    @Transactional
     public Boolean isAFollower(final String id, final String followerId) {
         return userRepository.isAFollower(id, followerId);
     }
 
     @Override
-    @Transactional
     public Boolean isAFollowing(final String id, final String followingId) {
         return userRepository.isAFollowing(id, followingId);
     }
 
     @Override
-    @Transactional
     public Integer getFollowersNumber(final String id) {
         return userRepository.getFollowersNumber(id);
     }
 
     @Override
-    @Transactional
     public Integer getFollowingsNumber(final String id) {
         return userRepository.getFollowingsNumber(id);
     }
@@ -69,13 +64,11 @@ public class UserServiceImpl implements UserService, FollowerService, FollowingS
     }
 
     @Override
-    @Transactional
     public List<User> findFollowersByUserId(final String id) {
         return userRepository.findFollowersByUserId(id);
     }
 
     @Override
-    @Transactional
     public List<User> findFollowingsByUserId(final String id) {
         return userRepository.findFollowingsByUserId(id);
     }
