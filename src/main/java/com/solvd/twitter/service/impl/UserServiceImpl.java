@@ -4,6 +4,8 @@ import com.solvd.twitter.domain.exception.ResourceAlreadyExistsException;
 import com.solvd.twitter.domain.exception.ResourceDoesNotExistException;
 import com.solvd.twitter.domain.user.User;
 import com.solvd.twitter.repository.UserRepository;
+import com.solvd.twitter.service.FollowerService;
+import com.solvd.twitter.service.FollowingService;
 import com.solvd.twitter.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, FollowerService, FollowingService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
