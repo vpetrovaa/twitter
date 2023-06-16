@@ -26,6 +26,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Post findById(String id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new ResourceDoesNotExistException("There" +
@@ -33,21 +34,25 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Post> findAllPostsByUserId(String userId) {
         return postRepository.findAllPostsByUserId(userId);
     }
 
     @Override
+    @Transactional
     public Post update(Post post) {
         return postRepository.update(post);
     }
 
     @Override
+    @Transactional
     public void deleteById(String id) {
         postRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteAllByUserId(String userId) {
         postRepository.deleteAllByUserId(userId);
     }
