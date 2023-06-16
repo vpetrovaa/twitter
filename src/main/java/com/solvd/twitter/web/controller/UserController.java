@@ -134,7 +134,7 @@ public class UserController {
         return postMapper.toDto(posts);
     }
 
-    @PutMapping("posts")
+    @PutMapping("/posts")
     public final PostDto update(@RequestBody @Validated final PostDto postDto) {
         Post post = postMapper.toEntity(postDto);
         post = postService.update(post);

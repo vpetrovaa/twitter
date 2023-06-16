@@ -27,4 +27,5 @@ public class Post {
 
     @Relationship(type = "POSTED", direction = Relationship.Direction.INCOMING)
     private User user;
+
 }

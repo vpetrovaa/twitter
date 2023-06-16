@@ -6,7 +6,9 @@ import com.solvd.twitter.repository.PostRepository;
 import com.solvd.twitter.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,8 +18,11 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
 
     @Override
+    @Transactional
     public Post create(Post post, String userId) {
-        return postRepository.create(post, userId);
+        post.setPostedTime(LocalDateTime.now());
+        post = postRepository.save(post);
+        return postRepository.createRelationship(post.getId(), userId);
     }
 
     @Override
