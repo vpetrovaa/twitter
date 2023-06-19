@@ -1,10 +1,14 @@
 package com.solvd.twitter.web.controller;
 
+import com.solvd.twitter.domain.user.Post;
 import com.solvd.twitter.domain.user.User;
 import com.solvd.twitter.service.FollowerService;
 import com.solvd.twitter.service.FollowingService;
+import com.solvd.twitter.service.PostService;
 import com.solvd.twitter.service.UserService;
+import com.solvd.twitter.web.dto.PostDto;
 import com.solvd.twitter.web.dto.UserDto;
+import com.solvd.twitter.web.mapper.PostMapper;
 import com.solvd.twitter.web.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -26,9 +30,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final PostService postService;
     private final FollowerService followerService;
     private final FollowingService followingService;
     private final UserMapper userMapper;
+    private final PostMapper postMapper;
 
     @GetMapping("/{id}/followers/is")
     public final Boolean isAFollower(@PathVariable final String id,
@@ -106,6 +112,43 @@ public class UserController {
     public void deleteFollowerById(@PathVariable final String id,
                                    @RequestParam final String followerId) {
         followerService.deleteFollowerById(id, followerId);
+    }
+
+    @PostMapping("/{id}/posts")
+    public final PostDto createPost(@PathVariable final String id,
+                                @RequestBody @Validated final PostDto postDto) {
+        Post post = postMapper.toEntity(postDto);
+        post = postService.create(post, id);
+        return postMapper.toDto(post);
+    }
+
+    @GetMapping("/posts/{id}")
+    public final PostDto getPostById(@PathVariable final String id) {
+        Post post = postService.findById(id);
+        return postMapper.toDto(post);
+    }
+
+    @GetMapping("/{id}/posts")
+    public final List<PostDto> getPostsByUserId(@PathVariable final String id) {
+        List<Post> posts = postService.findAllPostsByUserId(id);
+        return postMapper.toDto(posts);
+    }
+
+    @PutMapping("/posts")
+    public final PostDto update(@RequestBody @Validated final PostDto postDto) {
+        Post post = postMapper.toEntity(postDto);
+        post = postService.update(post);
+        return postMapper.toDto(post);
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public void deletePostById(@PathVariable final String id) {
+        postService.deleteById(id);
+    }
+
+    @DeleteMapping("/{id}/posts")
+    public void deletePostsByUserId(@PathVariable final String id) {
+        postService.deleteAllByUserId(id);
     }
 
 }
