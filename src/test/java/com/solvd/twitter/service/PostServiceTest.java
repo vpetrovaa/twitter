@@ -1,11 +1,10 @@
-package com.solvd.twitter.unit;
+package com.solvd.twitter.service;
 
 import com.solvd.twitter.domain.exception.ResourceDoesNotExistException;
 import com.solvd.twitter.domain.user.Post;
 import com.solvd.twitter.repository.PostRepository;
-import com.solvd.twitter.service.PostService;
 import com.solvd.twitter.service.impl.PostServiceImpl;
-import com.solvd.twitter.unit.factory.TwitterFactory;
+import com.solvd.twitter.service.factory.TwitterFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

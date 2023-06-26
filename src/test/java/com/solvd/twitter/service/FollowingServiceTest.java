@@ -1,10 +1,9 @@
-package com.solvd.twitter.unit;
+package com.solvd.twitter.service;
 
 import com.solvd.twitter.domain.user.User;
 import com.solvd.twitter.repository.UserRepository;
-import com.solvd.twitter.service.FollowingService;
 import com.solvd.twitter.service.impl.UserServiceImpl;
-import com.solvd.twitter.unit.factory.TwitterFactory;
+import com.solvd.twitter.service.factory.TwitterFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

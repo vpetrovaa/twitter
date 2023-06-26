@@ -1,4 +1,4 @@
-package com.solvd.twitter.unit.factory;
+package com.solvd.twitter.service.factory;
 
 import com.solvd.twitter.domain.user.Post;
 import com.solvd.twitter.domain.user.User;
